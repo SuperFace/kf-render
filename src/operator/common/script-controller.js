@@ -277,6 +277,19 @@ define( function ( require ) {
 
             return space;
 
+        },
+
+        applyUpDownScript: function(target, sup, sub) {
+            var supBox = sup.getFixRenderBox(), subBox = sub.getFixRenderBox(), targetBox = target.getFixRenderBox(), space = {
+                width: Math.max(targetBox.width, supBox.width, subBox.width),
+                height: supBox.height + subBox.height + targetBox.height,
+                top: 0,
+                bottom: 0
+            };
+            sup.translate((space.width - supBox.width) / 2, 0);
+            target.translate((space.width - targetBox.width) / 2, supBox.height);
+            sub.translate((space.width - subBox.width) / 2, supBox.height + targetBox.height);
+            return space;
         }
 
     } );
